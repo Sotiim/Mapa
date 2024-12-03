@@ -3,10 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mapa de Recuerdos</title>
+    <title>Mi Mapa de Recuerdos</title>
+    <!-- Cargar Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
-        #map { height: 500px; width: 100%; }
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 30px;
+        }
+        #map {
+            height: 600px;
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .popup-content {
+            font-size: 16px;
+            color: #333;
+            text-align: center;
+        }
+        .leaflet-popup-content-wrapper {
+            background-color: #fefefe;
+            border-radius: 8px;
+            padding: 10px;
+        }
+        .leaflet-popup-tip {
+            border-top-color: #fefefe !important;
+        }
+        #texto-abajo {
+            text-align: center;
+            font-size: 18px;
+            color: #555;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
 </head>
 <body>
@@ -14,9 +58,15 @@
     <h1>Mi Mapa de Recuerdos</h1>
     <div id="map"></div>
 
+    <!-- Texto debajo del mapa -->
+    <div id="texto-abajo">
+        <p>Este mapa está lleno de lugares que han marcado momentos especiales en mi vida. ¡Cada lugar tiene una historia única!</p>
+    </div>
+
+    <!-- Cargar Leaflet JS -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        // Crear el mapa y centrarlo en un lugar específico
+        // Crear el mapa centrado en un lugar específico
         var map = L.map('map').setView([19.4326, -99.1332], 12); // Ciudad de México
 
         // Añadir un mapa base (usando OpenStreetMap)
@@ -31,12 +81,19 @@
             { nombre: "Primer trabajo", lat: 19.4325, lon: -99.1331, descripcion: "Mi primer empleo y lo que aprendí ahí." }
         ];
 
-        // Añadir marcadores al mapa
+        // Crear un ícono con forma de corazón
+        var heartIcon = L.divIcon({
+            className: 'heart-icon',
+            html: '<span style="font-size: 24px; color: red; transform: rotate(45deg);">&hearts;</span>',
+            iconSize: [30, 30],
+            iconAnchor: [15, 15]
+        });
+
+        // Añadir marcadores con ícono de corazón al mapa
         lugares.forEach(function(lugar) {
-            L.marker([lugar.lat, lugar.lon])
+            L.marker([lugar.lat, lugar.lon], { icon: heartIcon })
                 .addTo(map)
-                .bindPopup("<b>" + lugar.nombre + "</b><br>" + lugar.descripcion)
-                .openPopup();
+                .bindPopup("<div class='popup-content'><b>" + lugar.nombre + "</b><br>" + lugar.descripcion + "</div>");
         });
     </script>
 
