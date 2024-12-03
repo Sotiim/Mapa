@@ -67,7 +67,7 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
         // Crear el mapa centrado en un lugar específico
-        var map = L.map('map').setView([19.4326, -99.1332], 12); // Ciudad de México
+        var map = L.map('map').setView([20.573879, -100.385917], 12); // Primer lugar: coordenadas
 
         // Añadir un mapa base (usando OpenStreetMap)
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -76,17 +76,16 @@
 
         // Lista de lugares con coordenadas y descripciones
         var lugares = [
-            { nombre: "Lugar de encuentro con amigos", lat: 19.4326, lon: -99.1332, descripcion: "El lugar donde nos reunimos por primera vez." },
-            { nombre: "Vacaciones en la playa", lat: 21.1623, lon: -86.8515, descripcion: "Recuerdos de nuestras vacaciones inolvidables." },
-            { nombre: "Primer trabajo", lat: 19.4325, lon: -99.1331, descripcion: "Mi primer empleo y lo que aprendí ahí." }
+            { nombre: "Dónde nos conocimos", lat: 20.573879, lon: -100.385917, descripcion: "El lugar donde nos conocimos." },
+            { nombre: "Nuestra primera cita", lat: 21.1633, lon: -100.9333, descripcion: "LAGO GRILL Restaurante, San Cristóbal, Dolores Hidalgo, donde tuvimos nuestra primera cita." }
         ];
 
         // Crear un ícono con forma de corazón
-        var heartIcon = L.divIcon({
-            className: 'heart-icon',
-            html: '<span style="font-size: 24px; color: red; transform: rotate(45deg);">&hearts;</span>',
-            iconSize: [30, 30],
-            iconAnchor: [15, 15]
+        var heartIcon = L.icon({
+            iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Heart_symbol_%28filled%29.svg/1024px-Heart_symbol_%28filled%29.svg.png', // URL de un ícono de corazón
+            iconSize: [30, 30], // Tamaño del corazón
+            iconAnchor: [15, 30], // Poner el punto de anclaje en la base del corazón
+            popupAnchor: [0, -30] // Desplazar el texto del popup
         });
 
         // Añadir marcadores con ícono de corazón al mapa
