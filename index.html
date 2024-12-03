@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa de Recuerdos</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map { height: 500px; width: 100%; }
+    </style>
+</head>
+<body>
+
+    <h1>Mi Mapa de Recuerdos</h1>
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // Crear el mapa y centrarlo en un lugar específico
+        var map = L.map('map').setView([19.4326, -99.1332], 12); // Ciudad de México
+
+        // Añadir un mapa base (usando OpenStreetMap)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Lista de lugares con coordenadas y descripciones
+        var lugares = [
+            { nombre: "Lugar de encuentro con amigos", lat: 19.4326, lon: -99.1332, descripcion: "El lugar donde nos reunimos por primera vez." },
+            { nombre: "Vacaciones en la playa", lat: 21.1623, lon: -86.8515, descripcion: "Recuerdos de nuestras vacaciones inolvidables." },
+            { nombre: "Primer trabajo", lat: 19.4325, lon: -99.1331, descripcion: "Mi primer empleo y lo que aprendí ahí." }
+        ];
+
+        // Añadir marcadores al mapa
+        lugares.forEach(function(lugar) {
+            L.marker([lugar.lat, lugar.lon])
+                .addTo(map)
+                .bindPopup("<b>" + lugar.nombre + "</b><br>" + lugar.descripcion)
+                .openPopup();
+        });
+    </script>
+
+</body>
+</html>
