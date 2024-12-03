@@ -1,100 +1,100 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Mapa de Recuerdos</title>
-    <!-- Cargar Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f8ff;
-            margin: 0;
-            padding: 0;
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-            margin-top: 30px;
-        }
-        #map {
-            height: 600px;
-            width: 100%;
-            border-radius: 10px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
-            margin-top: 20px;
-        }
-        .popup-content {
-            font-size: 16px;
-            color: #333;
-            text-align: center;
-        }
-        .leaflet-popup-content-wrapper {
-            background-color: #fefefe;
-            border-radius: 8px;
-            padding: 10px;
-        }
-        .leaflet-popup-tip {
-            border-top-color: #fefefe !important;
-        }
-        #texto-abajo {
-            text-align: center;
-            font-size: 18px;
-            color: #555;
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            width: 80%;
-            margin-left: auto;
-            margin-right: auto;
-        }
-    </style>
-</head>
-<body>
-
-    <h1>Mi Mapa de Recuerdos</h1>
-    <div id="map"></div>
-
-    <!-- Texto debajo del mapa -->
-    <div id="texto-abajo">
-        <p>Este mapa está lleno de lugares que han marcado momentos especiales en mi vida. ¡Cada lugar tiene una historia única!</p>
-    </div>
-
-    <!-- Cargar Leaflet JS -->
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script>
-        // Crear el mapa centrado en un lugar específico
-        var map = L.map('map').setView([20.573879, -100.385917], 12); // Primer lugar: coordenadas
-
-        // Añadir un mapa base (usando OpenStreetMap)
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        // Lista de lugares con coordenadas y descripciones
-        var lugares = [
-            { nombre: "Dónde nos conocimos", lat: 20.573879, lon: -100.385917, descripcion: "El lugar donde nos conocimos." },
-            { nombre: "Nuestra primera cita", lat: 21.1633, lon: -100.9333, descripcion: "LAGO GRILL Restaurante, San Cristóbal, Dolores Hidalgo, donde tuvimos nuestra primera cita." }
-        ];
-
-        // Crear un ícono con forma de corazón
-        var heartIcon = L.icon({
-            iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/a/a2/Red_heart.png', // URL de un ícono de corazón alternativo
-            iconSize: [30, 30], // Tamaño del corazón
-            iconAnchor: [15, 30], // Poner el punto de anclaje en la base del corazón
-            popupAnchor: [0, -30] // Desplazar el texto del popup
-        });
-
-        // Añadir marcadores con ícono de corazón al mapa
-        lugares.forEach(function(lugar) {
-            L.marker([lugar.lat, lugar.lon], { icon: heartIcon })
-                .addTo(map)
-                .bindPopup("<div class='popup-content'><b>" + lugar.nombre + "</b><br>" + lugar.descripcion + "</div>");
-        });
-    </script>
-
-</body>
-</html>
+ <!DOCTYPE html>
+ <html lang="es">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Mi Mapa de Recuerdos</title>
+     <!-- Cargar Leaflet CSS -->
+     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+     <style>
+         body {
+             font-family: 'Arial', sans-serif;
+             background-color: #f0f8ff;
+             margin: 0;
+             padding: 0;
+         }
+         h1 {
+             text-align: center;
+             color: #2c3e50;
+             margin-top: 30px;
+         }
+         #map {
+             height: 600px;
+             width: 100%;
+             border-radius: 10px;
+             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+             margin-top: 20px;
+         }
+         .popup-content {
+             font-size: 16px;
+             color: #333;
+             text-align: center;
+         }
+         .leaflet-popup-content-wrapper {
+             background-color: #fefefe;
+             border-radius: 8px;
+             padding: 10px;
+         }
+         .leaflet-popup-tip {
+             border-top-color: #fefefe !important;
+         }
+         #texto-abajo {
+             text-align: center;
+             font-size: 18px;
+             color: #555;
+             margin-top: 20px;
+             padding: 20px;
+             background-color: #fff;
+             border-radius: 8px;
+             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+             width: 80%;
+             margin-left: auto;
+             margin-right: auto;
+         }
+     </style>
+ </head>
+ <body>
+ 
+     <h1>Mi Mapa de Recuerdos</h1>
+     <div id="map"></div>
+ 
+     <!-- Texto debajo del mapa -->
+     <div id="texto-abajo">
+         <p>Este mapa está lleno de lugares que han marcado momentos especiales en mi vida. ¡Cada lugar tiene una historia única!</p>
+     </div>
+ 
+     <!-- Cargar Leaflet JS -->
+     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+     <script>
+         // Crear el mapa centrado en un lugar específico
+         var map = L.map('map').setView([20.573879, -100.385917], 12); // Primer lugar: coordenadas
+ 
+         // Añadir un mapa base (usando OpenStreetMap)
+         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+         }).addTo(map);
+ 
+         // Lista de lugares con coordenadas y descripciones
+         var lugares = [
+             { nombre: "Dónde nos conocimos", lat: 20.573879, lon: -100.385917, descripcion: "El lugar donde nos conocimos." },
+             { nombre: "Nuestra primera cita", lat: 21.1633, lon: -100.9333, descripcion: "LAGO GRILL Restaurante, San Cristóbal, Dolores Hidalgo, donde tuvimos nuestra primera cita." }
+         ];
+ 
+         // Crear un ícono con forma de corazón
+         var heartIcon = L.icon({
+             iconUrl: 'https://cdn-icons-png.flaticon.com/512/833/833472.png', // URL confiable para el ícono de corazón
+             iconSize: [30, 30], // Tamaño del corazón
+             iconAnchor: [15, 30], // Poner el punto de anclaje en la base del corazón
+             popupAnchor: [0, -30] // Desplazar el texto del popup
+         });
+ 
+         // Añadir marcadores con ícono de corazón al mapa
+         lugares.forEach(function(lugar) {
+             L.marker([lugar.lat, lugar.lon], { icon: heartIcon })
+                 .addTo(map)
+                 .bindPopup("<div class='popup-content'><b>" + lugar.nombre + "</b><br>" + lugar.descripcion + "</div>");
+         });
+     </script>
+ 
+ </body>
+ </html>
