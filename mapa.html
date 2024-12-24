@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,11 +15,13 @@
             margin: 0;
             padding: 0;
         }
+
         h1 {
             text-align: center;
             color: #2c3e50;
             margin-top: 30px;
         }
+
         #map {
             height: 600px;
             width: 100%;
@@ -26,19 +29,23 @@
             box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
             margin-top: 20px;
         }
+
         .popup-content {
             font-size: 16px;
             color: #333;
             text-align: center;
         }
+
         .leaflet-popup-content-wrapper {
             background-color: #fefefe;
             border-radius: 8px;
             padding: 10px;
         }
+
         .leaflet-popup-tip {
             border-top-color: #fefefe !important;
         }
+
         #texto-abajo {
             text-align: center;
             font-size: 18px;
@@ -54,6 +61,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <h1>Nuestro Mapa de Recuerdos</h1>
@@ -61,7 +69,11 @@
 
     <!-- Texto debajo del mapa -->
     <div id="texto-abajo">
-        <p>Este mapa tiene mucho por contar, y juntos vamos a escribir cada rincón con nuestras aventuras.</p>
+        <p>El mejor regalo que puedo darte es mi tiempo, junto con todo lo necesario para seguir construyendo esta
+            historia. Aunque por ahora solo hay unos pocos lugares representados en el mapa, el plan es llenarlo de
+            recuerdos significativos que compartamos.
+            Quiero que siempre tengas lo mejor, lo que haga falta para que te sientas especial en cada momento. Este
+            mapa tiene mucho por contar, y juntos vamos a escribir cada rincón con nuestras aventuras.</p>
     </div>
 
     <!-- Cargar Leaflet JS -->
@@ -77,39 +89,39 @@
 
         // Lista de lugares con coordenadas y descripciones
         var lugares = [
-            { 
-                nombre: "Dónde nos conocimos", 
-                lat: 20.573879, 
-                lon: -100.385917, 
-                descripcion: "Este año estuve en muchos lugares, este fue mi favorito, porque ahí fue donde te conocí.", 
+            {
+                nombre: "Dónde nos conocimos",
+                lat: 20.573879,
+                lon: -100.385917,
+                descripcion: "Este año estuve en muchos lugares, este fue mi favorito, porque ahí fue donde te conocí.",
                 icono: "heart"
             },
-            { 
-                nombre: "Nuestra primera cita", 
-                lat: 21.157563898690523, 
+            {
+                nombre: "Nuestra primera cita",
+                lat: 21.157563898690523,
                 lon: -100.9183410624351,
-                descripcion: "Toda la mañana y todo el viaje estuve tosiendo y temblando, como si tuviera frío, porque estaba nervioso. Uno de los momentos más bonitos de todo el año", 
+                descripcion: "Toda la mañana y todo el viaje estuve tosiendo y temblando, como si tuviera frío, porque estaba nervioso. Uno de los momentos más bonitos de todo el año",
                 icono: "date"
             },
-            { 
-                nombre: "El primer regalo",  
-                lat: 21.012819234368518, 
-                lon: -101.25167217463073, 
-                descripcion: "Un día antes me dijiste que estabas cansada y que te faltaba cenar. Desde ese momento, me propuse cuidar de ti y hacerte feliz en todo lo que esté a mi alcance.", 
+            {
+                nombre: "El primer regalo",
+                lat: 21.012819234368518,
+                lon: -101.25167217463073,
+                descripcion: "Un día antes me dijiste que estabas cansada y que te faltaba cenar. Desde ese momento, me propuse cuidar de ti y hacerte feliz en todo lo que esté a mi alcance.",
                 icono: "pizza"
             },
-            { 
-                nombre: "Las primeras flores que te regalé", 
-                lat: 21.045013, 
-                lon: -101.253213, 
-                descripcion: "Las primeras son las más importantes, pero también las que menos me han gustado, jajaja. Desde ahí me propuse darte el ramo perfecto, y aún sigo en busca de él.", 
+            {
+                nombre: "Las primeras flores que te regalé",
+                lat: 21.045013,
+                lon: -101.253213,
+                descripcion: "Las primeras son las más importantes, pero también las que menos me han gustado, jajaja. Desde ahí me propuse darte el ramo perfecto, y aún sigo en busca de él.",
                 icono: "flowers"
             },
-            { 
-                nombre: "Flores amarillas", 
+            {
+                nombre: "Flores amarillas",
                 lat: 21.158016486842236,
                 lon: -100.93651626243508,
-                descripcion: "De por si ya te las iba a regalar, pero un dia subiste una nota que me dejó pensando, donde, en tono de broma, decías que estabas de envidiosilla. A mí nunca me gusta prometer cosas, pero créeme que, mientras siga en tu vida, tú no serás espectadora de nada ni tendrás que envidiarle nada a nadie. Será al revés.", 
+                descripcion: "De por si ya te las iba a regalar, pero un dia subiste una nota que me dejó pensando, donde, en tono de broma, decías que estabas de envidiosilla. A mí nunca me gusta prometer cosas, pero créeme que, mientras siga en tu vida, tú no serás espectadora de nada ni tendrás que envidiarle nada a nadie. Será al revés.",
                 icono: "bee"
             }
         ];
@@ -149,7 +161,7 @@
         };
 
         // Añadir marcadores con sus respectivos íconos
-        lugares.forEach(function(lugar) {
+        lugares.forEach(function (lugar) {
             L.marker([lugar.lat, lugar.lon], { icon: icons[lugar.icono] })
                 .addTo(map)
                 .bindPopup("<div class='popup-content'><b>" + lugar.nombre + "</b><br>" + lugar.descripcion + "</div>");
@@ -157,4 +169,5 @@
     </script>
 
 </body>
+
 </html>
