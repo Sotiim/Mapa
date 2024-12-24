@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nuestro Mapa de Recuerdos</title>
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/833/833472.png">
+    <!-- Cargar Leaflet CSS -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <style>
         body {
@@ -53,84 +55,106 @@
     </style>
 </head>
 <body>
+
     <h1>Nuestro Mapa de Recuerdos</h1>
     <div id="map"></div>
+
+    <!-- Texto debajo del mapa -->
     <div id="texto-abajo">
         <p>Este mapa tiene mucho por contar, y juntos vamos a escribir cada rincón con nuestras aventuras.</p>
     </div>
+
+    <!-- Cargar Leaflet JS -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        var map = L.map('map').setView([21.0, -100.0], 7);
+        // Crear el mapa centrado en un lugar específico
+        var map = L.map('map').setView([20.573879, -100.385917], 12); // Primer lugar: coordenadas
 
+        // Añadir un mapa base (usando OpenStreetMap)
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        // Lista de lugares con direcciones actualizadas
+        // Lista de lugares con coordenadas y descripciones
         var lugares = [
             { 
                 nombre: "Dónde nos conocimos", 
-                direccion: "Cto. Moisés Solana 217, Vista Habitacional, 76070 Santiago de Querétaro, Qro.", 
+                lat: 20.573879, 
+                lon: -100.385917, 
                 descripcion: "Este año estuve en muchos lugares, este fue mi favorito, porque ahí fue donde te conocí.", 
-                icono: "https://cdn-icons-png.flaticon.com/512/833/833472.png"
+                icono: "heart"
             },
             { 
                 nombre: "Nuestra primera cita", 
-                direccion: "Calzada, Av. De los Heroes 110 G, San Cristobal, 37800 Dolores Hidalgo Cuna de la Independencia Nacional, Gto.", 
-                descripcion: "Toda la mañana y todo el viaje estuve tosiendo y temblando, como si tuviera frío, porque estaba nervioso. Uno de los momentos más bonitos de todo el año.", 
-                icono: "https://cdn-icons-png.flaticon.com/512/1775/1775748.png"
+                lat: 21.157563898690523, 
+                lon: -100.9183410624351,
+                descripcion: "Toda la mañana y todo el viaje estuve tosiendo y temblando, como si tuviera frío, porque estaba nervioso. Uno de los momentos más bonitos de todo el año", 
+                icono: "date"
             },
             { 
-                nombre: "El primer regalo", 
-                direccion: "Sostenes Rocha 35, Centro, 36000 Guanajuato, Gto.", 
+                nombre: "El primer regalo",  
+                lat: 21.012819234368518, 
+                lon: -101.25167217463073, 
                 descripcion: "Un día antes me dijiste que estabas cansada y que te faltaba cenar. Desde ese momento, me propuse cuidar de ti y hacerte feliz en todo lo que esté a mi alcance.", 
-                icono: "https://cdn-icons-png.flaticon.com/512/3132/3132693.png"
+                icono: "pizza"
             },
             { 
                 nombre: "Las primeras flores que te regalé", 
-                direccion: "36250, Carr. Guanajuato - Juventino Rosas km 5, 36250 Guanajuato, Gto.", 
+                lat: 21.045013, 
+                lon: -101.253213, 
                 descripcion: "Las primeras son las más importantes, pero también las que menos me han gustado, jajaja. Desde ahí me propuse darte el ramo perfecto, y aún sigo en busca de él.", 
-                icono: "https://cdn-icons-png.flaticon.com/512/4098/4098389.png"
+                icono: "flowers"
             },
             { 
                 nombre: "Flores amarillas", 
-                direccion: "Michoacán 16, Centro, 37800 Dolores Hidalgo Cuna de la Independencia Nacional, Gto.", 
-                descripcion: "De por si ya te las iba a regalar, pero un día subiste una nota que me dejó pensando, donde, en tono de broma, decías que estabas de envidiosilla. A mí nunca me gusta prometer cosas, pero créeme que, mientras siga en tu vida, tú no serás espectadora de nada ni tendrás que envidiarle nada a nadie. Será al revés.", 
-                icono: "https://cdn-icons-png.flaticon.com/512/809/809154.png"
+                lat: 21.158016486842236,
+                lon: -100.93651626243508,
+                descripcion: "De por si ya te las iba a regalar, pero un dia subiste una nota que me dejó pensando, donde, en tono de broma, decías que estabas de envidiosilla. A mí nunca me gusta prometer cosas, pero créeme que, mientras siga en tu vida, tú no serás espectadora de nada ni tendrás que envidiarle nada a nadie. Será al revés.", 
+                icono: "bee"
             }
         ];
 
-        // Función para obtener coordenadas a partir de una dirección
-        function geocode(direccion, callback) {
-            fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(direccion)}`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data && data.length > 0) {
-                        callback({
-                            lat: parseFloat(data[0].lat),
-                            lon: parseFloat(data[0].lon)
-                        });
-                    } else {
-                        console.error("No se encontraron coordenadas para la dirección:", direccion);
-                    }
-                })
-                .catch(error => console.error("Error en la geocodificación:", error));
-        }
+        // Íconos personalizados
+        var icons = {
+            heart: L.icon({
+                iconUrl: 'https://cdn-icons-png.flaticon.com/512/833/833472.png', // Ícono de corazón
+                iconSize: [30, 30],
+                iconAnchor: [15, 30],
+                popupAnchor: [0, -30]
+            }),
+            date: L.icon({
+                iconUrl: 'https://cdn-icons-png.flaticon.com/512/1775/1775748.png', // Ícono de cita
+                iconSize: [30, 30],
+                iconAnchor: [15, 30],
+                popupAnchor: [0, -30]
+            }),
+            pizza: L.icon({
+                iconUrl: 'https://cdn-icons-png.flaticon.com/512/3132/3132693.png', // Ícono de pizza
+                iconSize: [30, 30],
+                iconAnchor: [15, 30],
+                popupAnchor: [0, -30]
+            }),
+            flowers: L.icon({
+                iconUrl: 'https://cdn-icons-png.flaticon.com/512/4098/4098389.png', // Ícono de flores
+                iconSize: [30, 30],
+                iconAnchor: [15, 30],
+                popupAnchor: [0, -30]
+            }),
+            bee: L.icon({
+                iconUrl: 'https://cdn-icons-png.flaticon.com/512/809/809154.png', // Ícono de abeja
+                iconSize: [30, 30],
+                iconAnchor: [15, 30],
+                popupAnchor: [0, -30]
+            })
+        };
 
         // Añadir marcadores con sus respectivos íconos
         lugares.forEach(function(lugar) {
-            geocode(lugar.direccion, function(coords) {
-                L.marker([coords.lat, coords.lon], {
-                    icon: L.icon({
-                        iconUrl: lugar.icono,
-                        iconSize: [30, 30],
-                        iconAnchor: [15, 30]
-                    })
-                })
+            L.marker([lugar.lat, lugar.lon], { icon: icons[lugar.icono] })
                 .addTo(map)
                 .bindPopup("<div class='popup-content'><b>" + lugar.nombre + "</b><br>" + lugar.descripcion + "</div>");
-            });
         });
     </script>
+
 </body>
 </html>
