@@ -102,6 +102,48 @@
         transform: translateY(100vh); /* Llega al fondo de la pantalla visible */
       }
     }
+
+    /* Media Queries para dispositivos móviles */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5em;
+      }
+
+      p {
+        font-size: 1.2em;
+        margin: 15px auto;
+      }
+
+      .gift-box {
+        width: 150px;
+        height: 150px;
+      }
+
+      .snowflake {
+        font-size: 1.2em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2em;
+      }
+
+      p {
+        font-size: 1em;
+        margin: 10px auto;
+        max-width: 90%;
+      }
+
+      .gift-box {
+        width: 130px;
+        height: 130px;
+      }
+
+      .snowflake {
+        font-size: 1em;
+      }
+    }
   </style>
   <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet">
 </head>
